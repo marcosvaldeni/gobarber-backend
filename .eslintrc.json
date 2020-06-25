@@ -8,7 +8,6 @@
         "plugin:@typescript-eslint/recommended",
         "prettier/@typescript-eslint",
         "plugin:prettier/recommended"
-        
     ],
     "globals": {
         "Atomics": "readonly",
@@ -29,7 +28,7 @@
             "error",
             "ignorePackages",
             {
-              "ts": "never",
+              "ts": "never"
             }
           ]
     },
@@ -38,4 +37,5 @@
           "typescript": {}
         }
       }
+
 }

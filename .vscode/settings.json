@@ -17,7 +17,7 @@
         "editor.codeActionsOnSave": {
             "source.fixAll.eslint": true
         },
-        "window.zoomLevel": 1,
+        "window.zoomLevel": 0,
         "emmet.syntaxProfiles": {
             "javascript": "jsx"
         },
@@ -25,6 +25,6 @@
             "javascript": "javascriptreact"
         },
         "liveServer.settings.donotShowInfoMsg": true,
-        "workbench.colorTheme": "Dracula"
+        "workbench.colorTheme": "Default Dark+"
 
 }

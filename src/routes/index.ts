@@ -4,5 +4,5 @@ import appointmentsRouter from './appointments.routes';
 const routes = Router();
 
 routes.use('/appointments', appointmentsRouter);
-
+// test
 export default routes;

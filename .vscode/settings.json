@@ -4,7 +4,7 @@
      "explorer.confirmDelete": false, 
      "explorer.compactFolders": false, 
      "explorer.confirmDragAndDrop": false, 
-     "editor.fontSize": 16,
+     "editor.fontSize": 14,
       "editor.rulers": [ 80, 120 ], 
        "editor.renderLineHighlight": "gutter", 
      "editor.tabSize": 2,
@@ -17,7 +17,7 @@
         "editor.codeActionsOnSave": {
             "source.fixAll.eslint": true
         },
-        "window.zoomLevel": 0,
+        "window.zoomLevel": 2,
         "emmet.syntaxProfiles": {
             "javascript": "jsx"
         },

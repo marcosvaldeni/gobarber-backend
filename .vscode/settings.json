@@ -25,6 +25,6 @@
             "javascript": "javascriptreact"
         },
         "liveServer.settings.donotShowInfoMsg": true,
-        "workbench.colorTheme": "Default Dark+"
+        "workbench.colorTheme": "Dracula"
 
 }

@@ -16,19 +16,19 @@
 
 # :rocket: Features 
 
-* http://localhost:3333/users
+* `http://localhost:3333/users`
       [POST] Create new user
 
-* http://localhost:3333/user/avatar
+* `http://localhost:3333/user/avatar`
       [PACH] Update user avatar
 
-* http://localhost:3333/appointments
+* `http://localhost:3333/appointments`
       [POST] Create new appointment
 
-* http://localhost:3333/appointments
+* `http://localhost:3333/appointments`
       [GET] List all appointments
 
-* http://localhost:3333/sessions
+* `http://localhost:3333/sessions`
       [POST] Create a new token
 
 # :construction_worker: Installation
@@ -52,7 +52,7 @@ This command will install all dependencies. It may take a while.
 **Importing database**
 
 For import the database firstly you will need to create a docker postgres image:
-`docker run --name gostack_postgres -e POSTGRES_PASSWORD=docker -p postgres`
+`docker run --name gostack_postgres -e POSTGRES_PASSWORD=secret -p  5432:5432 -d postgres`
 
 **Setting connection variables**
 

@@ -2,21 +2,23 @@ import { Router } from 'express';
 
 import AuthenticateUserService from '../services/AuthenticateUserService';
 
-const sessionsRouter = Router();
+const seeeionsRouter = Router();
 
-sessionsRouter.post('/', async (request, response) => {
-  const { email, password } = request.body;
+seeeionsRouter.post('/', async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-  const authenticateUser = new AuthenticateUserService();
+    const authenticateUser = new AuthenticateUserService();
 
-  const { user, token } = await authenticateUser.execute({
-    email,
-    password,
-  });
+    const { user, token } = await authenticateUser.execute({
+      email,
+      password,
+    });
 
-  delete user.password;
-
-  return response.json({ user, token });
+    return res.json({ user, token });
+  } catch (err: any) {
+    return res.status(err.statusCode).json({ error: err.message });
+  }
 });
 
-export default sessionsRouter;
+export default seeeionsRouter;

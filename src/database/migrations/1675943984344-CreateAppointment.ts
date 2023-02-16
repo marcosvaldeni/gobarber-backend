@@ -1,30 +1,30 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export default class CreateUsers1593508472293 implements MigrationInterface {
+export class CreateAppointment1675943984344 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+		// this line is required to avoid the "driverError: error: function uuid_generate_v4() does not exist" error
+		await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
+
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'appointments',
         columns: [
           {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+						default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
+            name: 'provider',
             type: 'varchar',
+            isNullable: false,
           },
           {
-            name: 'email',
-            type: 'varchar',
-            isUnique: true,
-          },
-          {
-            name: 'password',
-            type: 'varchar',
+            name: 'date',
+            type: 'timestamp with time zone',
+            isNullable: false,
           },
           {
             name: 'created_at',
@@ -42,6 +42,6 @@ export default class CreateUsers1593508472293 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('appointments');
   }
 }

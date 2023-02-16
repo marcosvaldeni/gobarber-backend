@@ -18,14 +18,14 @@ class UpdateUserAvatarService {
     const user = await usersRepository.findOne(user_id);
 
     if (!user) {
-      throw new AppError('Only authenticate users can change avatar.', 401);
+      throw new AppError('Only authenticated user can change avatar');
     }
 
     if (user.avatar) {
       const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar);
-      const userAvatarFilesExists = await fs.promises.stat(userAvatarFilePath);
+      const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath);
 
-      if (userAvatarFilesExists) {
+      if (userAvatarFileExists) {
         await fs.promises.unlink(userAvatarFilePath);
       }
     }

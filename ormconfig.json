@@ -2,12 +2,12 @@
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
-  "username": "postgres",
+  "username": "urrots",
   "password": "secret",
-  "database": "gostack_gobarber",
+  "database": "gobarber",
   "entities": [
-    "./src/models/*.ts"
-  ],
+		"./src/models/*.ts"
+	],
   "migrations": [
     "./src/database/migrations/*.ts"
   ],

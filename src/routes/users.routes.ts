@@ -3,16 +3,15 @@ import multer from 'multer';
 import uploadConfig from '../config/upload';
 
 import CreateUserService from '../services/CreateUserService';
-import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
-
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
 
 const usersRouter = Router();
 const upload = multer(uploadConfig);
 
-usersRouter.post('/', async (request, response) => {
+usersRouter.post('/', async (req, res) => {
   try {
-    const { name, email, password } = request.body;
+    const { name, email, password } = req.body;
 
     const createUser = new CreateUserService();
 
@@ -22,27 +21,44 @@ usersRouter.post('/', async (request, response) => {
       password,
     });
 
-    return response.json(user);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
+    const userWithoutPassword = { 
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      created_at: user.created_at,
+      updated_at: user.updated_at
+    };
+
+    return res.json(userWithoutPassword);
+
+  } catch (err: any) {
+    return res.status(400).json({ error: err.message });
   }
 });
 
-usersRouter.patch(
-  '/avatar',
-  ensureAuthenticated,
-  upload.single('avatar'),
-  async (request, response) => {
-    const updateUserAvatar = new UpdateUserAvatarService();
+usersRouter.patch('/avatar', ensureAuthenticated,
+  upload.single('avatar'), async (req, res) => {
 
-    const user = await updateUserAvatar.execute({
-      user_id: request.user.id,
-      avatarFilename: request.file.filename,
-    });
+    try {
+      const updateUserAvatar = new UpdateUserAvatarService();
 
-    delete user.password;
+      const user = await updateUserAvatar.execute({
+        user_id: req.user.id,
+        avatarFilename: req.file!.filename,
+      });
 
-    return response.json(user);
+      const userWithoutPassword = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        created_at: user.created_at,
+        updated_at: user.updated_at,
+      };
+
+      return res.json(userWithoutPassword);
+    } catch (err: any) {
+      return res.status(400).json({ error: err.message });
+    }
   },
 );
 

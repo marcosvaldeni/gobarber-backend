@@ -1,24 +1,23 @@
 import { Router } from 'express';
+import UsersRepository from 'modules/users/repositories/UsersRepository';
 
 import AuthenticateUserService from '../../../service/AuthenticateUserService';
 
 const seeeionsRouter = Router();
 
 seeeionsRouter.post('/', async (req, res) => {
-  try {
-    const { email, password } = req.body;
 
-    const authenticateUser = new AuthenticateUserService();
+  const { email, password } = req.body;
 
-    const { user, token } = await authenticateUser.execute({
-      email,
-      password,
-    });
+  const usersRepository = new UsersRepository();
+  const authenticateUser = new AuthenticateUserService(usersRepository);
 
-    return res.json({ user, token });
-  } catch (err: any) {
-    return res.status(err.statusCode).json({ error: err.message });
-  }
+  const { user, token } = await authenticateUser.execute({
+    email,
+    password,
+  });
+
+  return res.json({ user, token });
 });
 
 export default seeeionsRouter;

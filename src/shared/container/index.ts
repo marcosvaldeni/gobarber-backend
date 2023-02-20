@@ -1,11 +1,11 @@
 
 import { container } from 'tsyringe';
 
-import IAppointmentsRepository from 'modules/appointments/repositories/IAppointmentsRepository';
-import AppointmentsRepository from 'modules/appointments/infra/repositories/AppointmentRepository';
+import IAppointmentsRepository from '../../modules/appointments/repositories/IAppointmentsRepository';
+import AppointmentsRepository from '../../modules/appointments/infra/repositories/AppointmentRepository';
 
-import IUsersRepository from 'modules/users/infra/typeorm/repositories/IUsersRepository';
-import UsersRepository from 'modules/users/repositories/UsersRepository';
+import IUsersRepository from '../../modules/users/infra/typeorm/repositories/IUsersRepository';
+import UsersRepository from '../../modules/users/repositories/UsersRepository';
 
 container.registerSingleton<IAppointmentsRepository>(
   'AppointmentsRepository', 

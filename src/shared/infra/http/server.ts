@@ -22,7 +22,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       status: 'error',
       message: err.message,
     });
-}
+  }
 
   console.error(err);
 
@@ -33,9 +33,9 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 app.get('/', (req, res) => {
-	return res.json({ message: 'GoBarber' });
+  return res.json({ message: 'GoBarber' });
 });
 
 app.listen(3333, () => {
-	console.log('🤖 Server started on port 3333!');
+  console.log('🤖 Server started on port 3333!');
 });

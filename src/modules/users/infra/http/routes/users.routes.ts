@@ -6,11 +6,9 @@ import CreateUserService from '../../../service/CreateUserService';
 import UpdateUserAvatarService from '../../../service/UpdateUserAvatarService';
 import uploadConfig from '../../../../../config/upload';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-import UsersRepository from 'modules/users/repositories/UsersRepository';
 
 const usersRouter = Router();
 const upload = multer(uploadConfig);
-const usersRepository = new UsersRepository();
 
 usersRouter.post('/', async (req, res) => {
   const { name, email, password } = req.body;

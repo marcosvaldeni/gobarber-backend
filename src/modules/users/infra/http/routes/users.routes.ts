@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
+import { container } from 'tsyringe';
 
 import CreateUserService from '../../../service/CreateUserService';
 import UpdateUserAvatarService from '../../../service/UpdateUserAvatarService';
@@ -14,7 +15,7 @@ const usersRepository = new UsersRepository();
 usersRouter.post('/', async (req, res) => {
   const { name, email, password } = req.body;
 
-  const createUser = new CreateUserService(usersRepository);
+  const createUser = container.resolve(CreateUserService);
 
   const user = await createUser.execute({
     name,
@@ -35,7 +36,7 @@ usersRouter.post('/', async (req, res) => {
 
 usersRouter.patch('/avatar', ensureAuthenticated,
   upload.single('avatar'), async (req, res) => {
-    const updateUserAvatar = new UpdateUserAvatarService(usersRepository);
+    const updateUserAvatar = container.resolve(UpdateUserAvatarService);
 
     const user = await updateUserAvatar.execute({
       user_id: req.user.id,

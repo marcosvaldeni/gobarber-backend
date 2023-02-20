@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import UsersRepository from 'modules/users/repositories/UsersRepository';
+import { container } from 'tsyringe';
 
 import AuthenticateUserService from '../../../service/AuthenticateUserService';
 
@@ -9,8 +9,7 @@ seeeionsRouter.post('/', async (req, res) => {
 
   const { email, password } = req.body;
 
-  const usersRepository = new UsersRepository();
-  const authenticateUser = new AuthenticateUserService(usersRepository);
+  const authenticateUser = container.resolve(AuthenticateUserService);
 
   const { user, token } = await authenticateUser.execute({
     email,

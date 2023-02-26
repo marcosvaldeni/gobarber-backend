@@ -1,10 +1,8 @@
 import 'reflect-metadata';
 
-import AppError from '@shared/errors/AppError';
-
-import FakeUsersRepository from '@modules/users/repositories/Fakes/FakeUsersRepository';
-import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
-import SendForgotPasswordEmailService from '@modules/users/services/SendForgotPasswordEmailService';
+import FakeUsersRepository from '../repositories/fakes/FakesUsersRepository';
+import FakeMailProvider from '../../../shared/container/providers/MailProvider/fakes/FakeMailProvider';
+import SendForgotPasswordEmailService from './SendForgotPasswordEmailService';
 
 describe('CreateUser', () => {
   it('should be able to recover the password using the email', async () => {

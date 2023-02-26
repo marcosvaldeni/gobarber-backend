@@ -1,9 +1,11 @@
 import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
-import IUsersRepository from '../repositories/IUsersRepository'
-import User from '@modules/users/infra/typeorm/entities/User';
-import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
+import AppError from '../../../shared/errors/AppError';
+
+import IMailProvider from 'shared/container/providers/MailProvider/models/IMailProvider';
+import IUsersRepository from '../infra/typeorm/repositories/IUsersRepository';
+
+
 
 interface IRequest {
   email: string;
